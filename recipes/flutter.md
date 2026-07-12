@@ -10,22 +10,22 @@ Target: a Flutter mobile/desktop app whose API calls go through a central `ApiCl
   `http.get/post/...` directly — either (a) add a tiny shared
   `lib/services/http_client.dart` with `http.Client httpClient = http.Client();` and route
   the top-level calls (and `MultipartRequest.send()`) through it — explicit, covers
-  multipart, one assignment swaps in the fake (preferred; reference: funquila) — or
+  multipart, one assignment swaps in the fake (preferred) — or
   (b) zero-touch: `http.runWithClient(() => runApp(...), () => FakeBackendClient(db))`
   in the demo entrypoint (package `http` >= 0.13.4; zone-based).
 - **Dio apps** (instead of package:http): the seam is a fake `HttpClientAdapter`
   installed on the app's Dio (add an optional `HttpClientAdapter?` constructor param to
   the API client if needed — backwards-compatible). With Riverpod, override the API
   client provider in the demo's `ProviderScope`. Interceptors (bearer, 401→refresh)
-  keep working against the fake. Reference: fecha.
+  keep working against the fake.
 - **Mobile-only apps** (`dart:io` imports, no web/ dir): add conditional-import shims
   (`io_shim.dart` + `io_shim_io.dart`/`io_shim_web.dart`) that re-export dart:io on
   native and provide throwing/no-op stubs on web, then repoint the imports. Same for
-  `Image.file` → a `localFileImage()` helper. Reference: fecha.
+  `Image.file` → a `localFileImage()` helper.
 - **flutter_secure_storage on web**: its WebCrypto path races master-key generation
   under parallel writes (`Future.wait` of several `write()`s) → values encrypted with
   a discarded key → `OperationError` on read. Give the storage class a demo-only
-  plain-SharedPreferences mode and enable it from the demo entrypoint. Reference: fecha.
+  plain-SharedPreferences mode and enable it from the demo entrypoint.
 - WebSockets are NOT covered by the http seam. If the app has a WS channel (chat, live
   updates), the least-invasive pattern is a static opt-out flag on the service
   (`ChatService.disableSocket = true` set by the demo main; `connect()` early-returns so no
@@ -97,7 +97,7 @@ Future<void> main() async {
   // Do NOT init push/firebase/analytics here.
   final state = AppState(api);
   await state.bootstrap();
-  runApp(KonectaApp(state: state));                  // the app's real root widget
+  runApp(ProductApp(state: state));                  // the app's real root widget
 }
 ```
 

@@ -9,20 +9,6 @@ modern coding agents (Claude Code, Codex, Cursor, Gemini CLI, …) can execute
 against your repo to create — and later keep up to date — a `demo/` folder
 containing the demo.
 
-## Live examples
-
-Three real products, three stacks, all built by an agent running this spec:
-
-| Demo | Product | Stack | Interesting seams |
-|---|---|---|---|
-| [demo.funquila.es](https://demo.funquila.es) | Housing rental platform | Flutter + Go/Fiber on Fly.io | Swappable `httpClient` global, WebSocket chat → REST fallback, simulated in-app purchases |
-| [demo.konecta.academy](https://demo.konecta.academy) | Academy management app | Flutter + Go | Injectable `http.Client`, role picked by login email, simulated payments/AI |
-| [demo.fecha.app](https://demo.fecha.app) | Community access control | Flutter (Dio + Riverpod) + Go | Fake Dio `HttpClientAdapter` via provider override, `dart:io` shims for a mobile-only app, simulated LoRa door-open progression |
-
-Open one on desktop: a no-scroll guide page with the app running at mobile size
-inside a phone frame. On a phone you get the app full-screen. Everything you do
-is stored only in your browser (`localStorage`); any login works.
-
 ## How to use
 
 Give your coding agent the spec and an order, from the target product repo:
@@ -67,17 +53,17 @@ static files with one command, plus its own docs (`demo/README.md` and
   architecture, phase-by-phase workflow, definition of done. The source of
   truth ([AGENTS.md convention](https://agents.md)).
 - **`CLAUDE.md`** — Claude Code entrypoint (imports `AGENTS.md`).
-- **`recipes/`** — battle-tested, per-stack implementation guides with the
-  gotchas that cost real debugging time (e.g. Flutter web only drag-scrolls
-  with touch by default; `flutter_secure_storage` races its WebCrypto master
-  key on web; entry files must be served with `Cache-Control: no-cache` or
-  redeploys never reach returning visitors):
+- **`recipes/`** — per-stack implementation guides distilled from real demos,
+  with the gotchas that cost real debugging time (e.g. Flutter web only
+  drag-scrolls with touch by default; `flutter_secure_storage` races its
+  WebCrypto master key on web; entry files must be served with
+  `Cache-Control: no-cache` or redeploys never reach returning visitors):
   - `recipes/flutter.md` — Flutter app → Flutter web demo
   - `recipes/react.md` — React/Vue/JS SPA → demo build
 
 If your stack has no recipe, the spec instructs the agent to follow the general
 architecture and **write the missing recipe back into the repo** — that's how
-these two came to exist.
+the existing ones came to exist.
 
 ## License
 

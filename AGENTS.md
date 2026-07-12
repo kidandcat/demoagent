@@ -104,7 +104,7 @@ shell page** at the demo URL — product branding, a very visual mini-guide (wha
 3 steps to try it, feature grid, reset/fullscreen actions) — with the app embedded at
 mobile size inside a phone frame (iframe). Small screens skip the shell and redirect
 straight to the app (served under a sub-path, e.g. `/demo/app/`). Keep the shell a
-single self-contained HTML file in `demo/shell/`. Reference: funquila.
+single self-contained HTML file in `demo/shell/`.
 
 ### Phase 5 — Document
 `demo/README.md`: what it is, how to build, how to serve, demo credentials, what is simulated,
