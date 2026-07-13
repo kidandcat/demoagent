@@ -60,6 +60,7 @@ static files with one command, plus its own docs (`demo/README.md` and
   `Cache-Control: no-cache` or redeploys never reach returning visitors):
   - `recipes/flutter.md` — Flutter app → Flutter web demo
   - `recipes/react.md` — React/Vue/JS SPA → demo build
+  - `recipes/nextjs.md` — Next.js (pages router) → static export demo
 
 If your stack has no recipe, the spec instructs the agent to follow the general
 architecture and **write the missing recipe back into the repo** — that's how
